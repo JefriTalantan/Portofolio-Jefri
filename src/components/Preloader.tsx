@@ -11,23 +11,66 @@ export function Preloader({ onComplete }: PreloaderProps) {
   const pathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
-    // Counter animation
-    const duration = 1200;
+    const imagesToPreload = [
+      '/image/optimized/18_optimized.webp',
+      '/image/optimized/14.webp',
+      '/image/optimized/15.webp',
+      '/image/optimized/16.webp',
+      '/image/optimized/17.webp',
+      '/image/optimized/10.webp',
+    ];
+
+    let loadedCount = 0;
+    let assetsLoaded = false;
+
+    // Preload images
+    if (imagesToPreload.length === 0) {
+      assetsLoaded = true;
+    } else {
+      imagesToPreload.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        const handleLoad = () => {
+          loadedCount++;
+          if (loadedCount === imagesToPreload.length) {
+            assetsLoaded = true;
+          }
+        };
+        img.onload = handleLoad;
+        img.onerror = handleLoad; // resolve even if load fails to prevent freeze
+      });
+    }
+
+    const duration = 1000; // minimum duration 1s
     const startTime = Date.now();
+    let currentProgress = 0;
 
     const timer = setInterval(() => {
       const elapsed = Date.now() - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      // Ease out cubic
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCounter(Math.floor(eased * 100));
+      const timeProgress = Math.min(elapsed / duration, 1);
 
-      if (progress >= 1) {
+      // Animate progress smoothly.
+      // Cap at 85% if resources are still loading.
+      let targetProgress = Math.floor(timeProgress * 100);
+      if (!assetsLoaded && targetProgress > 85) {
+        targetProgress = 85;
+      }
+
+      // Smooth step increment
+      if (currentProgress < targetProgress) {
+        currentProgress += Math.min(2, targetProgress - currentProgress);
+        setCounter(currentProgress);
+      } else if (assetsLoaded && currentProgress < 100) {
+        currentProgress += 1;
+        setCounter(currentProgress);
+      }
+
+      if (assetsLoaded && currentProgress >= 100) {
         clearInterval(timer);
         setTimeout(() => {
           setIsExiting(true);
           setTimeout(onComplete, 600);
-        }, 200);
+        }, 150);
       }
     }, 16);
 
