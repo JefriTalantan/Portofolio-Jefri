@@ -35,6 +35,9 @@ function App() {
 
   // Initialize Lenis smooth scroll
   useEffect(() => {
+    // Disable on mobile/tablet to allow native momentum scroll
+    if (window.innerWidth <= 768) return;
+
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

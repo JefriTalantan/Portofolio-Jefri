@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useMediaQuery } from '../hooks/useMediaQuery';
 
 interface Particle {
   x: number;
@@ -30,10 +31,13 @@ const PALETTE = [
 ];
 
 export function GlobalInteractiveBackground() {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000, active: false, lastX: 0, lastY: 0, speed: 0 });
 
   useEffect(() => {
+    if (isMobile) return;
+
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
@@ -263,7 +267,9 @@ export function GlobalInteractiveBackground() {
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <canvas
