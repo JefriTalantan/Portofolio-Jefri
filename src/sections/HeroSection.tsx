@@ -380,59 +380,22 @@ export function HeroSection() {
             initial={{ opacity: 0, y: 40, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ delay: 1.8, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              position: 'relative',
-            }}
+            className="hero-portrait-container"
           >
             {/* Glow behind portrait */}
-            <div style={{
-              position: 'absolute',
-              width: '420px',
-              height: '420px',
-              borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.1) 50%, transparent 70%)',
-              filter: 'blur(40px)',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-            }} />
+            <div className="hero-portrait-glow" />
             
             {/* Masked wrapper to prevent drop-shadow clipping and smoothly fade at the bottom */}
-            <div style={{
-              position: 'relative',
-              zIndex: 1,
-              padding: '40px 60px 80px 60px',
-              margin: '-40px -60px -80px -60px',
-              maskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)',
-            }}>
+            <div className="hero-portrait-wrapper">
               <img
                 src="/image/optimized/18_optimized.webp"
                 alt="Nanda Jefri Talantan"
-                style={{
-                  width: '350px',
-                  height: '440px',
-                  objectFit: 'contain',
-                  objectPosition: 'bottom center',
-                  filter: 'drop-shadow(0 20px 40px rgba(59,130,246,0.25))',
-                }}
+                className="hero-portrait-img"
               />
             </div>
 
             {/* Themed Fog/Mist Overlay that blends the bottom of the portrait into the background */}
-            <div style={{
-              position: 'absolute',
-              bottom: '-20px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '380px',
-              height: '110px',
-              background: 'linear-gradient(to bottom, transparent, var(--bg-primary) 75%, var(--bg-primary))',
-              zIndex: 2,
-              pointerEvents: 'none',
-            }} />
+            <div className="hero-portrait-fog" />
           </motion.div>
 
           {/* Right: Bio + CTA */}
@@ -614,7 +577,86 @@ export function HeroSection() {
       </div>
 
       <style>{`
+        /* ----- Hero Portrait Responsive Styles ----- */
+        .hero-portrait-container {
+          display: flex;
+          justify-content: center;
+          position: relative;
+          width: 100%;
+          max-width: 350px;
+          margin: 0 auto;
+        }
+
+        .hero-portrait-glow {
+          position: absolute;
+          width: 280px;
+          height: 280px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.1) 50%, transparent 70%);
+          filter: blur(30px);
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+
+        .hero-portrait-wrapper {
+          position: relative;
+          z-index: 1;
+          padding: 30px 40px 60px 40px;
+          margin: -30px -40px -60px -40px;
+          mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
+          -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+
+        .hero-portrait-img {
+          width: 240px;
+          height: 300px;
+          object-fit: contain;
+          object-position: bottom center;
+          filter: drop-shadow(0 15px 30px rgba(59,130,246,0.22));
+          transition: all 0.3s ease;
+        }
+
+        .hero-portrait-fog {
+          position: absolute;
+          bottom: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 260px;
+          height: 80px;
+          background: linear-gradient(to bottom, transparent, var(--bg-primary) 75%, var(--bg-primary));
+          z-index: 2;
+          pointer-events: none;
+          transition: all 0.3s ease;
+        }
+
         @media (min-width: 768px) {
+          .hero-portrait-container {
+            max-width: none;
+          }
+          .hero-portrait-glow {
+            width: 420px;
+            height: 420px;
+            filter: blur(40px);
+          }
+          .hero-portrait-wrapper {
+            padding: 40px 60px 80px 60px;
+            margin: -40px -60px -80px -60px;
+          }
+          .hero-portrait-img {
+            width: 350px;
+            height: 440px;
+            filter: drop-shadow(0 20px 40px rgba(59,130,246,0.25));
+          }
+          .hero-portrait-fog {
+            bottom: -20px;
+            width: 380px;
+            height: 110px;
+          }
           .hero-split-grid {
             grid-template-columns: 1fr auto 1fr !important;
           }
