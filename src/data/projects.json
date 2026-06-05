@@ -4,7 +4,7 @@
     "title": "BAPPERIDA Agency Web System",
     "description": "Developed a web system for BAPPERIDA (Regional Development Planning, Research, and Innovation Agency) for document management, information publication, and online proposal submission.",
     "longDescription": "A web-based information system designed to support administrative document management, publish regional research and innovation findings, and facilitate online proposal submissions from the community. Built using Laravel and MySQL in collaboration with Bomi Developers, this system enhances transparency, speeds up information distribution, and streamlines public digital service administration.",
-    "image": "/image/optimized/6.webp",
+    "image": "/image/optimized/15.webp",
     "tags": ["Laravel", "PHP", "MySQL", "Web Development", "Bomi Developers"],
     "category": "web",
     "featured": true,
@@ -16,11 +16,35 @@
     "title": "SIMAPP Mappi Scholarship System",
     "description": "Academic and administrative monitoring web system for scholarship recipient students in collaboration with the regional government of Mappi Regency.",
     "longDescription": "Developed the SIMAPP web system, serving as an administration, scholarship, and academic tracking platform for Mappi Regency scholarship students. This system connects academic advisors, relevant agencies, and the regional government of Mappi to monitor student academic progress in real-time, improve data archiving transparency, and simplify scholarship eligibility verification.",
-    "image": "/image/optimized/12.webp",
+    "image": "/image/optimized/14.webp",
     "tags": ["Laravel", "React.js", "MySQL", "Web Development", "Scholarship Monitoring"],
     "category": "web",
     "featured": false,
     "githubUrl": "https://github.com/JefriTalantan",
     "date": "2025"
+  },
+  {
+    "id": "jereukom-system",
+    "title": "Jereukom Complaint & Installation System",
+    "description": "A web system designed for Jereukom to handle customer complaints, track installation requests, and manage technicians.",
+    "longDescription": "Developed a comprehensive web application for Jereukom to manage customer complaints, process new service installation requests, and coordinate technicians' field schedules. Built to streamline telecommunication customer service workflows and improve support response times.",
+    "image": "/image/optimized/16.webp",
+    "tags": ["Laravel", "PHP", "MySQL", "Web Development"],
+    "category": "web",
+    "featured": true,
+    "githubUrl": "https://github.com/JefriTalantan",
+    "date": "2025"
+  },
+  {
+    "id": "ar-tourism",
+    "title": "Augmented Reality Tourism Web System",
+    "description": "An interactive web-based augmented reality platform designed to showcase local tourist attractions.",
+    "longDescription": "Developed an interactive WebXR-enabled tourism platform that integrates augmented reality (AR) technology to guide visitors through local historical landmarks and attraction spots. Features include interactive AR models, travel guides, and geolocation tracking.",
+    "image": "/image/optimized/17.webp",
+    "tags": ["React.js", "WebXR", "Three.js", "Web Development"],
+    "category": "web",
+    "featured": false,
+    "githubUrl": "https://github.com/JefriTalantan",
+    "date": "2026"
   }
 ]

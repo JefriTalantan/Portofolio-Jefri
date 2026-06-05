@@ -271,7 +271,7 @@ export function HeroSection() {
               }}
             >
               <span style={{ display: 'block', fontFamily: "'Syne', sans-serif" }}>
-                {'Hi I\'m Nanda'.split('').map((char, i) => (
+                {'Hi I\'m Jefri'.split('').map((char, i) => (
                   <span
                     key={i}
                     className="letter"
@@ -389,8 +389,8 @@ export function HeroSection() {
             {/* Glow behind portrait */}
             <div style={{
               position: 'absolute',
-              width: '300px',
-              height: '300px',
+              width: '420px',
+              height: '420px',
               borderRadius: '50%',
               background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.1) 50%, transparent 70%)',
               filter: 'blur(40px)',
@@ -398,20 +398,41 @@ export function HeroSection() {
               left: '50%',
               transform: 'translate(-50%, -50%)',
             }} />
-            <img
-              src="/image/optimized/10.webp"
-              alt="Nanda Jefri Talantan"
-              style={{
-                width: '220px',
-                height: '280px',
-                objectFit: 'cover',
-                objectPosition: 'top',
-                borderRadius: '24px',
-                position: 'relative',
-                zIndex: 1,
-                boxShadow: '0 20px 60px rgba(59,130,246,0.15)',
-              }}
-            />
+            
+            {/* Masked wrapper to prevent drop-shadow clipping and smoothly fade at the bottom */}
+            <div style={{
+              position: 'relative',
+              zIndex: 1,
+              padding: '40px 60px 80px 60px',
+              margin: '-40px -60px -80px -60px',
+              maskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 85%)',
+            }}>
+              <img
+                src="/image/optimized/18_optimized.webp"
+                alt="Nanda Jefri Talantan"
+                style={{
+                  width: '350px',
+                  height: '440px',
+                  objectFit: 'contain',
+                  objectPosition: 'bottom center',
+                  filter: 'drop-shadow(0 20px 40px rgba(59,130,246,0.25))',
+                }}
+              />
+            </div>
+
+            {/* Themed Fog/Mist Overlay that blends the bottom of the portrait into the background */}
+            <div style={{
+              position: 'absolute',
+              bottom: '-20px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              width: '380px',
+              height: '110px',
+              background: 'linear-gradient(to bottom, transparent, var(--bg-primary) 75%, var(--bg-primary))',
+              zIndex: 2,
+              pointerEvents: 'none',
+            }} />
           </motion.div>
 
           {/* Right: Bio + CTA */}
