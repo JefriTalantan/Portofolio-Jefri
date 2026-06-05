@@ -11,6 +11,7 @@ import { CustomCursor } from './components/CustomCursor';
 import { Preloader } from './components/Preloader';
 import { ScrollProgress } from './components/ScrollProgress';
 import { BackToTop } from './components/BackToTop';
+import { GlobalInteractiveBackground } from './components/GlobalInteractiveBackground';
 
 // Sections
 import { Navbar } from './sections/Navbar';
@@ -64,6 +65,9 @@ function App() {
       {/* Custom Cursor (desktop) */}
       <CustomCursor />
 
+      {/* Global Interactive Particle Background */}
+      <GlobalInteractiveBackground />
+
       {/* Scroll Progress Bar */}
       <ScrollProgress />
 
@@ -81,7 +85,7 @@ function App() {
           },
           success: {
             iconTheme: {
-              primary: '#6C5CE7',
+              primary: '#3B82F6',
               secondary: '#fff',
             },
           },

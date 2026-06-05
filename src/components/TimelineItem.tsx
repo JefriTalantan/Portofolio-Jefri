@@ -50,7 +50,7 @@ export function TimelineItem({ event, index, isLeft = false }: TimelineItemProps
         <div style={{
           fontFamily: 'var(--font-caption)',
           fontSize: '12px',
-          color: 'var(--accent-purple)',
+          color: 'var(--accent-blue)',
           letterSpacing: '0.06em',
           textTransform: 'uppercase',
           marginBottom: '4px',

@@ -71,7 +71,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            background: '#0A0A0F',
+            background: '#0B1121',
           }}
         >
           {/* Logo SVG */}
@@ -84,7 +84,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               <path
                 ref={pathRef}
                 d="M 20 20 L 20 70 Q 20 80 30 80 L 45 80 Q 55 80 55 70 L 55 55 M 60 20 L 80 20 M 70 20 L 70 80"
-                stroke="#6C5CE7"
+                stroke="#3B82F6"
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -92,7 +92,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               {/* Brackets */}
               <path
                 d="M 12 30 L 5 50 L 12 70"
-                stroke="#00D2FF"
+                stroke="#60A5FA"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -100,7 +100,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               />
               <path
                 d="M 88 30 L 95 50 L 88 70"
-                stroke="#00D2FF"
+                stroke="#60A5FA"
                 strokeWidth="2.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -109,7 +109,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               {/* Slash */}
               <path
                 d="M 58 15 L 42 85"
-                stroke="#FF6B6B"
+                stroke="#F97066"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 opacity="0.4"
@@ -125,7 +125,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             style={{
               fontFamily: "'DM Mono', monospace",
               fontSize: '14px',
-              color: '#8B8BA0',
+              color: '#94A3B8',
               marginTop: '24px',
               letterSpacing: '0.1em',
             }}
@@ -138,7 +138,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
             style={{
               width: '120px',
               height: '2px',
-              background: '#1A1A25',
+              background: '#1E293B',
               borderRadius: '9999px',
               marginTop: '16px',
               overflow: 'hidden',
@@ -149,7 +149,7 @@ export function Preloader({ onComplete }: PreloaderProps) {
               animate={{ width: `${counter}%` }}
               style={{
                 height: '100%',
-                background: 'linear-gradient(90deg, #6C5CE7, #00D2FF)',
+                background: 'linear-gradient(90deg, #3B82F6, #6366F1)',
                 borderRadius: '9999px',
               }}
             />

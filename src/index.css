@@ -2,43 +2,46 @@
 
 /* ===== Custom Theme (Tailwind CSS v4) ===== */
 @theme {
-  /* Dark Mode Colors (Default) */
-  --color-bg-primary: #0A0A0F;
-  --color-bg-surface: #111118;
-  --color-bg-card: #1A1A25;
-  --color-bg-card-hover: #222233;
+  /* Dark Mode Colors */
+  --color-bg-primary: #0B1121;
+  --color-bg-surface: #111827;
+  --color-bg-card: #1E293B;
+  --color-bg-card-hover: #283548;
 
-  --color-accent-purple: #6C5CE7;
-  --color-accent-cyan: #00D2FF;
-  --color-accent-coral: #FF6B6B;
-  --color-accent-yellow: #FFEAA7;
+  --color-accent-blue: #3B82F6;
+  --color-accent-indigo: #6366F1;
+  --color-accent-sky: #60A5FA;
+  --color-accent-cyan: #22D3EE;
+  --color-accent-coral: #F97066;
+  --color-accent-yellow: #FBBF24;
 
-  --color-text-primary: #E8E8F0;
-  --color-text-secondary: #8B8BA0;
-  --color-text-tertiary: #5A5A70;
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #94A3B8;
+  --color-text-tertiary: #64748B;
 
-  --color-border: #2A2A3A;
-  --color-border-light: #1E1E2E;
+  --color-border: #1E293B;
+  --color-border-light: #1E293B;
 
   /* Light Mode Overrides */
-  --color-light-bg-primary: #FAFAFA;
-  --color-light-bg-surface: #F0F0F5;
+  --color-light-bg-primary: #FFFFFF;
+  --color-light-bg-surface: #F1F5F9;
   --color-light-bg-card: #FFFFFF;
-  --color-light-bg-card-hover: #F5F5FA;
+  --color-light-bg-card-hover: #F8FAFC;
 
-  --color-light-accent-cyan: #0099CC;
-  --color-light-accent-red: #FF4757;
+  --color-light-accent-blue: #3B82F6;
+  --color-light-accent-indigo: #6366F1;
 
-  --color-light-text-primary: #1A1A2E;
-  --color-light-text-secondary: #6B7280;
-  --color-light-text-tertiary: #9CA3AF;
+  --color-light-text-primary: #0F172A;
+  --color-light-text-secondary: #475569;
+  --color-light-text-tertiary: #94A3B8;
 
-  --color-light-border: #E5E7EB;
-  --color-light-border-light: #F0F0F5;
+  --color-light-border: #E2E8F0;
+  --color-light-border-light: #F1F5F9;
 
   /* Fonts */
   --font-display: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
   --font-caption: 'DM Mono', monospace;
   --font-code: 'JetBrains Mono', monospace;
+  --font-serif: 'Cormorant Garamond', serif;
 }

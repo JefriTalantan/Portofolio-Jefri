@@ -18,7 +18,7 @@ export function GlowCard({ children, className }: GlowCardProps) {
 
     glowRef.current.style.background = `radial-gradient(
       300px circle at ${x}px ${y}px,
-      rgba(108, 92, 231, 0.15),
+      rgba(59, 130, 246, 0.15),
       transparent 60%
     )`;
     glowRef.current.style.opacity = '1';

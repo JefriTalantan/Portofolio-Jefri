@@ -1,56 +1,74 @@
 [
   {
-    "id": "univ",
-    "title": "S1 Teknologi Informasi",
-    "subtitle": "Universitas XYZ",
-    "description": "Fokus pada Machine Learning, Computer Vision, dan pengembangan aplikasi web. Aktif dalam riset dan kompetisi teknologi.",
-    "date": "2022 — Sekarang",
+    "id": "univ-musamus",
+    "title": "Bachelor of Information Systems",
+    "subtitle": "Musamus University Merauke",
+    "description": "Active student of Information Systems, Faculty of Engineering with an interest in Web Development and Artificial Intelligence (Machine Learning, Computer Vision, NLP). Achieved a Cumulative Grade Point Average (GPA) of 3.95 out of 4.00.",
+    "date": "2022 — Present",
     "icon": "🎓",
     "type": "education"
   },
   {
-    "id": "lab-assistant",
-    "title": "Asisten Laboratorium",
-    "subtitle": "Lab Komputer — Universitas XYZ",
-    "description": "Membimbing praktikum pemrograman dasar dan struktur data. Mengembangkan sistem monitoring lab berbasis AI.",
-    "date": "2023 — Sekarang",
+    "id": "smart-center",
+    "title": "President of SMART Center",
+    "subtitle": "Musamus Research and Technology Center",
+    "description": "Founded and led SMART Center as a hub for research, technology collaboration, and business development for students across majors at Musamus University. Coordinated technology projects, AI integration, and initiated student business units such as Societas Victus.",
+    "date": "2025 — Present",
+    "icon": "🚀",
+    "type": "work"
+  },
+  {
+    "id": "asdos",
+    "title": "Teaching Assistant",
+    "subtitle": "Musamus University",
+    "description": "Guided laboratory sessions for Object-Oriented Programming (Java), Database Design, Web Application Development, Mobile Programming, and Information Systems Projects. Assisted students in debugging, database design, and development of projects based on Machine Learning, Computer Vision, and NLP.",
+    "date": "2025 — Present",
     "icon": "💻",
     "type": "work"
   },
   {
-    "id": "hackathon-winner",
-    "title": "Juara 2 Hackathon Nasional",
-    "subtitle": "AI Innovation Challenge 2024",
-    "description": "Mengembangkan solusi Computer Vision untuk monitoring keselamatan kerja di pabrik menggunakan YOLOv8.",
-    "date": "2024",
+    "id": "bapperida-dev",
+    "title": "Web Developer",
+    "subtitle": "BAPPERIDA Agency & Bomi Developers",
+    "description": "Developed a web system for BAPPERIDA (Regional Development Planning, Research, and Innovation Agency) to support document management, information publication, and online proposal submission services to improve administrative efficiency.",
+    "date": "2025 — Present",
+    "icon": "🌐",
+    "type": "work"
+  },
+  {
+    "id": "simapp-dev",
+    "title": "Web Developer",
+    "subtitle": "Mappi Regency & Musamus University",
+    "description": "Built the SIMAPP web system to support structured and transparent monitoring of administration and academic progress for MAPPI scholarship recipient students by advisors, relevant agencies, and the regional government of Mappi Regency.",
+    "date": "2025 — Present",
+    "icon": "🖥️",
+    "type": "work"
+  },
+  {
+    "id": "mappi-mentor",
+    "title": "Head of Computer Training Program",
+    "subtitle": "Mappi Scholarship Program — Musamus University",
+    "description": "Led and coordinated the basic computer skills training and mentoring program for Mappi scholarship recipient students, covering Microsoft Word, Excel, Canva, and other productivity applications.",
+    "date": "2025 — 2026",
+    "icon": "🧑‍🏫",
+    "type": "work"
+  },
+  {
+    "id": "ufonity-winner",
+    "title": "2nd Place in Videography",
+    "subtitle": "Ufonity Udayana Focus",
+    "description": "Won 2nd place in a national Videography competition organized by UKM Udayana Focus.",
+    "date": "2023",
     "icon": "🏆",
     "type": "achievement"
   },
   {
-    "id": "kaggle-expert",
-    "title": "Kaggle Notebook Expert",
-    "subtitle": "Kaggle",
-    "description": "Mendapatkan tier Expert di Kaggle Notebooks dengan 10+ notebook yang di-upvote oleh komunitas global.",
-    "date": "2024",
-    "icon": "📊",
-    "type": "achievement"
-  },
-  {
-    "id": "smk",
-    "title": "SMK Jurusan RPL",
-    "subtitle": "SMKN 1 Kota XYZ",
-    "description": "Jurusan Rekayasa Perangkat Lunak. Lulus dengan nilai terbaik di jurusan dan aktif dalam ekstrakulikuler IT.",
-    "date": "2019 — 2022",
-    "icon": "📚",
-    "type": "education"
-  },
-  {
-    "id": "freelance",
-    "title": "Freelance Web Developer",
-    "subtitle": "Self-employed",
-    "description": "Mengerjakan proyek website untuk UMKM lokal dan instansi pendidikan. Fokus pada Laravel dan React.",
-    "date": "2023 — Sekarang",
-    "icon": "🚀",
+    "id": "hmj-si",
+    "title": "Head of Education Division & PR Member",
+    "subtitle": "Information Systems Student Association (HMJ-SI)",
+    "description": "Responsible for coordinating and supporting various organizational activities (V & VI Congress, HMJ-SI Anniversary, P2CMSI), actively serving as a training speaker, website competition judge, and student academic development program coordinator.",
+    "date": "2022 — 2024",
+    "icon": "🤝",
     "type": "work"
   }
 ]

@@ -1,46 +1,88 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { SectionReveal } from '../components/SectionReveal';
 import skillsData from '../data/skills.json';
 import type { SkillType } from '../types';
+import {
+  SiPython,
+  SiPytorch,
+  SiTensorflow,
+  SiLaravel,
+  SiNodedotjs,
+  SiPhp,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiHtml5,
+  SiPostgresql,
+  SiMysql,
+  SiGit
+} from 'react-icons/si';
+import {
+  Brain,
+  Eye,
+  MessageSquare,
+  BarChart3,
+  Globe,
+  Smartphone,
+  Map,
+  FileSpreadsheet,
+  Briefcase,
+  Mic,
+  Award,
+  RefreshCw,
+  Users,
+  GraduationCap,
+  Lightbulb
+} from 'lucide-react';
 
-const categories = [
-  { id: 'all', label: 'All' },
-  { id: 'ml', label: 'Machine Learning' },
-  { id: 'cv', label: 'Computer Vision' },
-  { id: 'backend', label: 'Backend' },
-  { id: 'frontend', label: 'Frontend' },
-  { id: 'database', label: 'Database' },
-  { id: 'devops', label: 'DevOps & Tools' },
+const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
+  python: SiPython,
+  pytorch: SiPytorch,
+  tensorflow: SiTensorflow,
+  laravel: SiLaravel,
+  nodejs: SiNodedotjs,
+  php: SiPhp,
+  react: SiReact,
+  typescript: SiTypescript,
+  javascript: SiJavascript,
+  tailwindcss: SiTailwindcss,
+  html5: SiHtml5,
+  postgresql: SiPostgresql,
+  mysql: SiMysql,
+  git: SiGit,
+  ml: Brain,
+  cv: Eye,
+  nlp: MessageSquare,
+  data: BarChart3,
+  api: Globe,
+  mobile: Smartphone,
+  gis: Map,
+  office: FileSpreadsheet,
+  business: Briefcase,
+};
+
+const softSkills = [
+  { name: 'Leadership & Management', icon: Award, color: '#6366F1' },
+  { name: 'Public Speaking', icon: Mic, color: '#3B82F6' },
+  { name: 'Communication', icon: MessageSquare, color: '#60A5FA' },
+  { name: 'Problem Solving', icon: Lightbulb, color: '#0F9D58' },
+  { name: 'Adaptability', icon: RefreshCw, color: '#22D3EE' },
+  { name: 'Teamwork & Collaboration', icon: Users, color: '#FBBF24' },
+  { name: 'Teaching & Mentoring', icon: GraduationCap, color: '#F97066' },
+  { name: 'Business Development', icon: Briefcase, color: '#FF7043' },
 ];
 
-const levelColors: Record<string, string> = {
-  beginner: '#8B8BA0',
-  intermediate: '#FFEAA7',
-  advanced: '#00D2FF',
-  expert: '#6C5CE7',
-};
-
-const levelLabels: Record<string, string> = {
-  beginner: 'Beginner',
-  intermediate: 'Intermediate',
-  advanced: 'Advanced',
-  expert: 'Expert',
-};
-
 export function SkillsSection() {
-  const [activeCategory, setActiveCategory] = useState('all');
   const skills = skillsData as SkillType[];
-
-  const filteredSkills = activeCategory === 'all'
-    ? skills
-    : skills.filter(s => s.category === activeCategory);
+  // Exclude 'Business Development' from hard skills since we put it in soft skills
+  const hardSkills = skills.filter(s => s.name !== 'Business Development');
 
   return (
     <section id="skills" className="section">
       <div className="container">
         <SectionReveal>
-          <div className="section-subheading">Keahlian</div>
+          <div className="section-subheading">Skills</div>
           <h2 className="section-heading">
             Tech Stack &{' '}
             <span className="gradient-text">Skills</span>
@@ -51,153 +93,197 @@ export function SkillsSection() {
             maxWidth: '500px',
             marginBottom: '40px',
           }}>
-            Tools dan teknologi yang saya gunakan untuk membangun solusi dari ide menjadi produk nyata.
+            A combination of technical and interpersonal skills I use to realize digital solutions.
           </p>
         </SectionReveal>
 
-        {/* Filter Tabs */}
-        <SectionReveal delay={0.1}>
-          <div style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: '8px',
-            marginBottom: '40px',
-          }}>
-            {categories.map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                data-cursor-hover
-                style={{
-                  position: 'relative',
-                  padding: '8px 20px',
-                  borderRadius: '9999px',
-                  fontSize: '14px',
-                  fontWeight: 500,
-                  fontFamily: 'var(--font-body)',
-                  border: '1px solid',
-                  borderColor: activeCategory === cat.id ? 'var(--accent-purple)' : 'var(--border-color)',
-                  background: activeCategory === cat.id ? 'rgba(108,92,231,0.1)' : 'var(--bg-surface)',
-                  color: activeCategory === cat.id ? 'var(--accent-purple)' : 'var(--text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                }}
-              >
-                {cat.label}
-              </button>
-            ))}
+        {/* Split Grid: Hard Skills vs Soft Skills */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '40px',
+        }} className="skills-split-layout">
+          
+          {/* Left Column: Hard Skills */}
+          <div>
+            <h3 style={{
+              fontSize: '20px',
+              fontWeight: 700,
+              fontFamily: "'Syne', sans-serif",
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: 'var(--text-primary)',
+            }}>
+              <span style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: 'var(--accent-blue)',
+              }} />
+              Hard Skills
+            </h3>
+            
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
+              gap: '12px',
+            }}>
+              {hardSkills.map((skill, index) => {
+                const IconComponent = iconMap[skill.icon] || null;
+                return (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.015, duration: 0.4 }}
+                    whileHover={{ y: -4 }}
+                    style={{
+                      background: 'var(--bg-card)',
+                      borderRadius: '16px',
+                      border: '1px solid var(--border-color)',
+                      padding: '18px 12px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '10px',
+                      cursor: 'default',
+                      transition: 'border-color 0.3s, box-shadow 0.3s',
+                      position: 'relative',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = skill.color || 'var(--accent-blue)';
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${skill.color || '#3B82F6'}15`;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+                    }}
+                  >
+                    <div style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '12px',
+                      background: `${skill.color || '#3B82F6'}12`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: skill.color || 'var(--accent-blue)',
+                    }}>
+                      {IconComponent ? <IconComponent size={20} /> : <span style={{ fontSize: '18px', fontWeight: 700 }}>{skill.name.charAt(0)}</span>}
+                    </div>
+
+                    <span style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: 'var(--text-primary)',
+                      textAlign: 'center',
+                    }}>
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </SectionReveal>
 
-        {/* Bento Grid */}
-        <motion.div
-          layout
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))',
-            gap: '12px',
-          }}
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredSkills.map((skill, index) => (
-              <motion.div
-                key={skill.name}
-                layout
-                initial={{ opacity: 0, scale: 0.85, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.85 }}
-                transition={{
-                  layout: { type: 'spring', stiffness: 350, damping: 30 },
-                  opacity: { duration: 0.3 },
-                  delay: index * 0.03,
-                }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-color)',
-                  padding: '20px 16px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  gap: '10px',
-                  cursor: 'default',
-                  transition: 'border-color 0.3s, box-shadow 0.3s',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = skill.color || 'var(--accent-purple)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${skill.color || '#6C5CE7'}25`;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
-                  (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
-                }}
-              >
-                {/* Floating orb animation */}
-                <motion.div
-                  animate={{
-                    y: [0, -6, 0],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 3 + Math.random() * 2,
-                    ease: 'easeInOut',
-                    delay: Math.random() * 2,
-                  }}
-                  style={{
-                    width: '44px',
-                    height: '44px',
-                    borderRadius: '12px',
-                    background: `${skill.color || '#6C5CE7'}15`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '22px',
-                    fontWeight: 700,
-                    color: skill.color || 'var(--accent-purple)',
-                  }}
-                >
-                  {skill.name.charAt(0)}
-                </motion.div>
+          {/* Right Column: Soft Skills */}
+          <div>
+            <h3 style={{
+              fontSize: '20px',
+              fontWeight: 700,
+              fontFamily: "'Syne', sans-serif",
+              marginBottom: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              color: 'var(--text-primary)',
+            }}>
+              <span style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: 'var(--accent-indigo)',
+              }} />
+              Soft Skills
+            </h3>
 
-                <span style={{
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: 'var(--text-primary)',
-                  textAlign: 'center',
-                }}>
-                  {skill.name}
-                </span>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
+              gap: '12px',
+            }}>
+              {softSkills.map((skill, index) => {
+                const IconComponent = skill.icon;
+                return (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 15 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.02, duration: 0.4 }}
+                    whileHover={{ y: -4 }}
+                    style={{
+                      background: 'var(--bg-card)',
+                      borderRadius: '16px',
+                      border: '1px solid var(--border-color)',
+                      padding: '18px 12px',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      gap: '10px',
+                      cursor: 'default',
+                      transition: 'border-color 0.3s, box-shadow 0.3s',
+                      position: 'relative',
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = skill.color;
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${skill.color}15`;
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLDivElement).style.borderColor = 'var(--border-color)';
+                      (e.currentTarget as HTMLDivElement).style.boxShadow = 'none';
+                    }}
+                  >
+                    <div style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '12px',
+                      background: `${skill.color}12`,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: skill.color,
+                    }}>
+                      <IconComponent size={20} />
+                    </div>
 
-                {/* Level indicator */}
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '4px',
-                }}>
-                  <div style={{
-                    width: '6px',
-                    height: '6px',
-                    borderRadius: '50%',
-                    background: levelColors[skill.level],
-                  }} />
-                  <span style={{
-                    fontFamily: 'var(--font-caption)',
-                    fontSize: '10px',
-                    color: 'var(--text-tertiary)',
-                    letterSpacing: '0.05em',
-                    textTransform: 'uppercase',
-                  }}>
-                    {levelLabels[skill.level]}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+                    <span style={{
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      color: 'var(--text-primary)',
+                      textAlign: 'center',
+                    }}>
+                      {skill.name}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @media (min-width: 992px) {
+          .skills-split-layout {
+            grid-template-columns: 1.4fr 1fr !important;
+            gap: 48px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

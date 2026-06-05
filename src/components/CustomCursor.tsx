@@ -94,7 +94,7 @@ export function CustomCursor() {
           width: 8,
           height: 8,
           borderRadius: '50%',
-          background: 'var(--accent-purple)',
+          background: 'var(--accent-blue)',
           pointerEvents: 'none',
           zIndex: 99999,
           opacity: isVisible ? 1 : 0,
@@ -116,10 +116,12 @@ export function CustomCursor() {
           top: 0,
           left: 0,
           borderRadius: '50%',
-          border: `1.5px solid var(--accent-purple)`,
+          border: `1.5px solid rgba(255, 255, 255, 0.3)`,
+          boxShadow: '0 0 15px rgba(59, 130, 246, 0.45), inset 0 0 8px rgba(96, 165, 250, 0.35)',
           pointerEvents: 'none',
           zIndex: 99998,
-          opacity: 0.5,
+          backdropFilter: 'contrast(1.15) brightness(0.95) saturate(1.1) blur(0.4px)',
+          WebkitBackdropFilter: 'contrast(1.15) brightness(0.95) saturate(1.1) blur(0.4px)',
         }}
       />
       <style>{`

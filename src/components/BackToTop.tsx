@@ -42,7 +42,7 @@ export function BackToTop() {
             justifyContent: 'center',
             cursor: 'pointer',
             zIndex: 999,
-            boxShadow: 'var(--glow-purple)',
+            boxShadow: 'var(--glow-blue)',
             color: '#fff',
           }}
           whileHover={{ scale: 1.1 }}

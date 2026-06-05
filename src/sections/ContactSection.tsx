@@ -11,10 +11,10 @@ import {
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa';
 
 const socialLinks = [
-  { icon: <FaGithub size={22} />, label: 'GitHub', url: 'https://github.com/jefri', color: '#6e5494' },
-  { icon: <FaLinkedin size={22} />, label: 'LinkedIn', url: 'https://linkedin.com/in/jefri', color: '#0A66C2' },
-  { icon: <FaInstagram size={22} />, label: 'Instagram', url: 'https://instagram.com/jefri', color: '#E4405F' },
-  { icon: <Mail size={22} />, label: 'Email', url: 'mailto:jefri@example.com', color: '#6C5CE7' },
+  { icon: <FaGithub size={22} />, label: 'GitHub', url: 'https://github.com/JefriTalantan', color: '#3B82F6' },
+  { icon: <FaLinkedin size={22} />, label: 'LinkedIn', url: 'https://www.linkedin.com/in/nanda-jefri-talantan-35406829b', color: '#0A66C2' },
+  { icon: <FaInstagram size={22} />, label: 'Instagram', url: 'https://instagram.com/jefritalantan', color: '#E4405F' },
+  { icon: <Mail size={22} />, label: 'Email', url: 'mailto:jefritalantan@gmail.com', color: '#6366F1' },
 ];
 
 export function ContactSection() {
@@ -41,7 +41,7 @@ export function ContactSection() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!validate()) {
-      toast.error('Mohon lengkapi semua field yang diperlukan.');
+      toast.error('Please complete all required fields.');
       return;
     }
 
@@ -52,7 +52,7 @@ export function ContactSection() {
 
     setIsSubmitting(false);
     setIsSubmitted(true);
-    toast.success('Pesan terkirim! Saya akan segera membalas.');
+    toast.success('Message sent! I will get back to you shortly.');
 
     setTimeout(() => {
       setIsSubmitted(false);
@@ -85,14 +85,14 @@ export function ContactSection() {
         width: '600px',
         height: '600px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(108,92,231,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%)',
         filter: 'blur(80px)',
         pointerEvents: 'none',
       }} />
 
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
         <SectionReveal>
-          <div className="section-subheading">Kontak</div>
+          <div className="section-subheading">Contact</div>
           <h2 className="section-heading">
             Let's{' '}
             <span className="gradient-text">Connect</span>
@@ -103,7 +103,7 @@ export function ContactSection() {
             maxWidth: '500px',
             marginBottom: '48px',
           }}>
-            Ada ide kolaborasi atau ingin ngobrol tentang teknologi? Jangan ragu untuk menghubungi saya!
+            Have a collaboration idea or want to chat about tech? Feel free to reach out!
           </p>
         </SectionReveal>
 
@@ -143,16 +143,16 @@ export function ContactSection() {
               {/* Info items */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '32px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', fontSize: '15px' }}>
-                  <MapPin size={18} style={{ color: 'var(--accent-purple)' }} />
-                  <span>Indonesia</span>
+                  <MapPin size={18} style={{ color: 'var(--accent-blue)' }} />
+                  <span>Merauke, Papua Selatan, Indonesia</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', fontSize: '15px' }}>
-                  <Mail size={18} style={{ color: 'var(--accent-purple)' }} />
-                  <span>jefri@example.com</span>
+                  <Mail size={18} style={{ color: 'var(--accent-blue)' }} />
+                  <span>jefritalantan@gmail.com</span>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px', color: 'var(--text-secondary)', fontSize: '15px' }}>
-                  <Clock size={18} style={{ color: 'var(--accent-purple)' }} />
-                  <span>GMT+7 (WIB) · Respon dalam 24 jam</span>
+                  <Clock size={18} style={{ color: 'var(--accent-blue)' }} />
+                  <span>GMT+9 (WIT) · Response within 24 hours</span>
                 </div>
               </div>
 
@@ -208,16 +208,16 @@ export function ContactSection() {
                 >
                   <div>
                     <label style={{ display: 'block', fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '6px', fontFamily: 'var(--font-caption)' }}>
-                      Nama *
+                      Name *
                     </label>
                     <input
                       type="text"
                       id="contact-name"
-                      placeholder="Nama lengkap"
+                      placeholder="Full name"
                       value={formData.name}
                       onChange={(e) => { setFormData(p => ({ ...p, name: e.target.value })); setErrors(p => ({ ...p, name: false })); }}
                       style={inputStyle('name')}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(108,92,231,0.1)'; }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-blue)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)'; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = errors.name ? 'var(--accent-coral)' : 'var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                     />
                   </div>
@@ -232,7 +232,7 @@ export function ContactSection() {
                       value={formData.email}
                       onChange={(e) => { setFormData(p => ({ ...p, email: e.target.value })); setErrors(p => ({ ...p, email: false })); }}
                       style={inputStyle('email')}
-                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(108,92,231,0.1)'; }}
+                      onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-blue)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)'; }}
                       onBlur={(e) => { e.currentTarget.style.borderColor = errors.email ? 'var(--accent-coral)' : 'var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                     />
                   </div>
@@ -245,27 +245,27 @@ export function ContactSection() {
                   <input
                     type="text"
                     id="contact-subject"
-                    placeholder="Apa yang ingin dibahas?"
+                    placeholder="What would you like to discuss?"
                     value={formData.subject}
                     onChange={(e) => { setFormData(p => ({ ...p, subject: e.target.value })); setErrors(p => ({ ...p, subject: false })); }}
                     style={inputStyle('subject')}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(108,92,231,0.1)'; }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-blue)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)'; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = errors.subject ? 'var(--accent-coral)' : 'var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                   />
                 </div>
 
                 <div style={{ marginBottom: '24px' }}>
                   <label style={{ display: 'block', fontSize: '13px', color: 'var(--text-tertiary)', marginBottom: '6px', fontFamily: 'var(--font-caption)' }}>
-                    Pesan *
+                    Message *
                   </label>
                   <textarea
                     id="contact-message"
-                    placeholder="Ceritakan lebih detail..."
+                    placeholder="Tell me more details..."
                     rows={5}
                     value={formData.message}
                     onChange={(e) => { setFormData(p => ({ ...p, message: e.target.value })); setErrors(p => ({ ...p, message: false })); }}
                     style={inputStyle('message')}
-                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-purple)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(108,92,231,0.1)'; }}
+                    onFocus={(e) => { e.currentTarget.style.borderColor = 'var(--accent-blue)'; e.currentTarget.style.boxShadow = '0 0 0 3px rgba(59,130,246,0.1)'; }}
                     onBlur={(e) => { e.currentTarget.style.borderColor = errors.message ? 'var(--accent-coral)' : 'var(--border-color)'; e.currentTarget.style.boxShadow = 'none'; }}
                   />
                 </div>
@@ -293,11 +293,11 @@ export function ContactSection() {
                       />
                     ) : isSubmitted ? (
                       <>
-                        <CheckCircle2 size={18} /> Terkirim!
+                        <CheckCircle2 size={18} /> Sent!
                       </>
                     ) : (
                       <>
-                        <Send size={18} /> Kirim Pesan
+                        <Send size={18} /> Send Message
                       </>
                     )}
                   </motion.button>

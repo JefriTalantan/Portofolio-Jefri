@@ -44,8 +44,10 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
         style={{
           position: 'fixed',
           top: '16px',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          left: 0,
+          right: 0,
+          marginLeft: 'auto',
+          marginRight: 'auto',
           zIndex: 9999,
           width: 'min(90vw, 900px)',
           padding: '12px 24px',
@@ -57,15 +59,15 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
                 backdropFilter: 'blur(16px)',
                 WebkitBackdropFilter: 'blur(16px)',
                 border: '1px solid var(--glass-border)',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.08)',
               }
             : {
                 background: 'transparent',
                 border: '1px solid transparent',
               }),
-          display: 'flex',
+          display: 'grid',
+          gridTemplateColumns: '1fr auto 1fr',
           alignItems: 'center',
-          justifyContent: 'space-between',
         }}
       >
         {/* Logo */}
@@ -82,13 +84,14 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
             display: 'flex',
             alignItems: 'center',
             gap: '2px',
+            justifySelf: 'start',
           }}
           data-cursor-hover
         >
-          <span style={{ color: 'var(--accent-purple)' }}>&lt;</span>
-          <span>J</span>
-          <span style={{ color: 'var(--accent-cyan)' }}>/</span>
-          <span style={{ color: 'var(--accent-purple)' }}>&gt;</span>
+          <span style={{ color: 'var(--accent-blue)' }}>&lt;</span>
+          <span>NJT</span>
+          <span style={{ color: 'var(--accent-indigo)' }}>/</span>
+          <span style={{ color: 'var(--accent-blue)' }}>&gt;</span>
         </button>
 
         {/* Desktop Nav Links */}
@@ -96,6 +99,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
           display: 'flex',
           alignItems: 'center',
           gap: '4px',
+          justifySelf: 'center',
         }}
           className="nav-desktop"
         >
@@ -113,7 +117,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
                 fontSize: '14px',
                 fontWeight: 500,
                 fontFamily: 'var(--font-body)',
-                color: activeSection === link.id ? 'var(--accent-purple)' : 'var(--text-secondary)',
+                color: activeSection === link.id ? 'var(--accent-blue)' : 'var(--text-secondary)',
                 transition: 'color 0.3s',
                 borderRadius: '8px',
               }}
@@ -128,7 +132,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
                     left: '16px',
                     right: '16px',
                     height: '2px',
-                    background: 'var(--accent-purple)',
+                    background: 'var(--accent-blue)',
                     borderRadius: '9999px',
                   }}
                   transition={{ type: 'spring', stiffness: 400, damping: 30 }}
@@ -139,7 +143,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
         </div>
 
         {/* Right side: Theme toggle + Mobile menu */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', justifySelf: 'end' }}>
           <ThemeToggle isDark={isDark} onToggle={onThemeToggle} />
 
           {/* Hamburger (mobile) */}
@@ -205,7 +209,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
                   fontSize: '16px',
                   fontWeight: 500,
                   fontFamily: 'var(--font-body)',
-                  color: activeSection === link.id ? 'var(--accent-purple)' : 'var(--text-primary)',
+                  color: activeSection === link.id ? 'var(--accent-blue)' : 'var(--text-primary)',
                   borderRadius: '12px',
                   textAlign: 'left',
                   transition: 'background 0.2s',

@@ -1,83 +1,77 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { gsap } from '../animations/gsapConfig';
+import { gsap, ScrollTrigger, prefersReducedMotion } from '../animations/gsapConfig';
 import { MagneticButton } from '../components/MagneticButton';
-import { ArrowDown, Sparkles, Mail } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import {
+  SiPython,
+  SiPytorch,
+  SiTensorflow,
+  SiLaravel,
+  SiNodedotjs,
+  SiPhp,
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss,
+  SiPostgresql,
+  SiMysql,
+  SiGit,
+  SiGithub
+} from 'react-icons/si';
+
+const techLogos = [
+  { name: 'Python', icon: SiPython, color: '#3776AB' },
+  { name: 'PyTorch', icon: SiPytorch, color: '#EE4C2C' },
+  { name: 'TensorFlow', icon: SiTensorflow, color: '#FF6F00' },
+  { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
+  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+  { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+  { name: 'React.js', icon: SiReact, color: '#61DAFB' },
+  { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+  { name: 'Tailwind CSS', icon: SiTailwindcss, color: '#38BDF8' },
+  { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+  { name: 'CSS3', icon: SiCss, color: '#1572B6' },
+  { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+  { name: 'MySQL', icon: SiMysql, color: '#00758F' },
+  { name: 'Git', icon: SiGit, color: '#F05032' },
+  { name: 'GitHub', icon: SiGithub, color: '#94A3B8' },
+];
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
   const typewriterRef = useRef<HTMLSpanElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Particle network background
+  // ScrollTrigger hero content parallax fade-out
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    if (!sectionRef.current || prefersReducedMotion()) return;
 
-    let animationId: number;
-    let particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    const container = sectionRef.current.querySelector('.hero-content');
+    if (!container) return;
 
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Create particles
-    const count = Math.min(60, Math.floor(window.innerWidth / 20));
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        size: Math.random() * 2 + 0.5,
-        opacity: Math.random() * 0.5 + 0.15,
-      });
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(108, 92, 231, ${p.opacity})`;
-        ctx.fill();
-
-        // Draw lines between close particles
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = p.x - particles[j].x;
-          const dy = p.y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 150) {
-            ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(108, 92, 231, ${0.08 * (1 - dist / 150)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        }
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-    animate();
+    const tween = gsap.to(container, {
+      y: -150,
+      opacity: 0,
+      scale: 0.94,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      },
+    });
 
     return () => {
-      cancelAnimationFrame(animationId);
-      window.removeEventListener('resize', resize);
+      tween.kill();
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.trigger === sectionRef.current) st.kill();
+      });
     };
   }, []);
 
@@ -100,9 +94,9 @@ export function HeroSection() {
     );
   }, []);
 
-  // Typewriter effect (manual implementation to avoid dependency issues)
+  // Typewriter effect
   useEffect(() => {
-    const roles = ['ML Engineer', 'Computer Vision Dev', 'Full-Stack Builder'];
+    const roles = ['Full-Stack Developer', 'AI Developer', 'Mobile Developer', 'Data Analyst'];
     let roleIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -141,10 +135,12 @@ export function HeroSection() {
     };
   }, []);
 
-  const nameText = 'Jefri';
+  const scrollToAbout = useCallback(() => {
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
 
-  const scrollToProjects = useCallback(() => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToContact = useCallback(() => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   return (
@@ -155,23 +151,14 @@ export function HeroSection() {
         position: 'relative',
         minHeight: '100vh',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: 'column',
         justifyContent: 'center',
         overflow: 'hidden',
+        paddingTop: '100px',
+        paddingBottom: '40px',
       }}
     >
-      {/* Particle Canvas */}
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          zIndex: 0,
-          opacity: 0.6,
-        }}
-      />
-
-      {/* Gradient Mesh Background */}
+      {/* Blue Gradient Mesh Blobs */}
       <div style={{
         position: 'absolute',
         inset: 0,
@@ -179,7 +166,7 @@ export function HeroSection() {
         overflow: 'hidden',
         pointerEvents: 'none',
       }}>
-        {/* Purple blob */}
+        {/* Primary blue blob */}
         <motion.div
           animate={{
             x: [0, 50, -30, 0],
@@ -189,16 +176,16 @@ export function HeroSection() {
           transition={{ duration: 15, repeat: Infinity, ease: 'linear' }}
           style={{
             position: 'absolute',
-            top: '10%',
-            left: '15%',
+            top: '5%',
+            left: '10%',
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(108,92,231,0.15) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%)',
+            filter: 'blur(80px)',
           }}
         />
-        {/* Cyan blob */}
+        {/* Indigo blob */}
         <motion.div
           animate={{
             x: [0, -40, 30, 0],
@@ -208,16 +195,16 @@ export function HeroSection() {
           transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
           style={{
             position: 'absolute',
-            bottom: '15%',
-            right: '10%',
+            bottom: '10%',
+            right: '5%',
             width: '450px',
             height: '450px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(0,210,255,0.1) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
+            filter: 'blur(80px)',
           }}
         />
-        {/* Coral accent */}
+        {/* Sky accent */}
         <motion.div
           animate={{
             x: [0, 30, -20, 0],
@@ -226,25 +213,31 @@ export function HeroSection() {
           transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
           style={{
             position: 'absolute',
-            top: '50%',
-            left: '60%',
-            width: '300px',
-            height: '300px',
+            top: '40%',
+            left: '50%',
+            width: '350px',
+            height: '350px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,107,107,0.06) 0%, transparent 70%)',
-            filter: 'blur(50px)',
+            background: 'radial-gradient(circle, rgba(96,165,250,0.08) 0%, transparent 70%)',
+            filter: 'blur(60px)',
           }}
         />
       </div>
 
       {/* Content */}
-      <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-        {/* Greeting Badge */}
+      <div className="hero-content container" style={{ position: 'relative', zIndex: 2 }}>
+        {/* Award Badge */}
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
+          transition={{ delay: 1.4, duration: 0.5 }}
           style={{
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: '32px',
+          }}
+        >
+          <div style={{
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
@@ -252,64 +245,230 @@ export function HeroSection() {
             borderRadius: '9999px',
             background: 'var(--bg-surface)',
             border: '1px solid var(--border-color)',
-            marginBottom: '28px',
-            fontSize: '14px',
+            fontSize: '13px',
             color: 'var(--text-secondary)',
-          }}
-        >
-          <Sparkles size={16} style={{ color: 'var(--accent-yellow)' }} />
-          <span>Halo, saya</span>
-          <span style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            background: '#22C55E',
-            animation: 'pulse-glow 2s infinite',
-            boxShadow: '0 0 8px rgba(34,197,94,0.5)',
-          }} />
-          <span style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>Open to work</span>
+          }}>
+            <Sparkles size={14} style={{ color: 'var(--accent-yellow)' }} />
+            <span>Musamus University · Information Systems</span>
+          </div>
         </motion.div>
 
-        {/* Name */}
-        <h1
-          ref={nameRef}
-          style={{
-            fontFamily: "'Syne', sans-serif",
-            fontSize: 'clamp(3rem, 10vw, 6rem)',
-            fontWeight: 800,
-            lineHeight: 1,
-            marginBottom: '16px',
-            perspective: '1000px',
-          }}
-        >
-          {nameText.split('').map((char, i) => (
-            <span
-              key={i}
-              className="letter"
+        {/* Main Headline */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.5, duration: 0.7 }}
+          >
+            <h1
+              ref={nameRef}
               style={{
-                display: 'inline-block',
-                opacity: 0,
-                background: i === 0 ? 'var(--accent-gradient)' : 'none',
-                WebkitBackgroundClip: i === 0 ? 'text' : 'unset',
-                WebkitTextFillColor: i === 0 ? 'transparent' : 'var(--text-primary)',
+                fontSize: 'clamp(2.5rem, 8vw, 5.5rem)',
+                fontWeight: 800,
+                lineHeight: 1.05,
+                marginBottom: '8px',
+                perspective: '1000px',
               }}
             >
-              {char}
-            </span>
-          ))}
-        </h1>
+              <span style={{ display: 'block', fontFamily: "'Syne', sans-serif" }}>
+                {'Hi I\'m Nanda'.split('').map((char, i) => (
+                  <span
+                    key={i}
+                    className="letter"
+                    style={{
+                      display: 'inline-block',
+                      opacity: 0,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+              </span>
+              <span style={{
+                display: 'block',
+                fontFamily: "'Syne', sans-serif",
+                marginTop: '4px',
+              }}>
+                {'Full-Stack'.split('').map((char, i) => (
+                  <span
+                    key={`fs-${i}`}
+                    className="letter"
+                    style={{
+                      display: 'inline-block',
+                      opacity: 0,
+                      color: 'var(--text-primary)',
+                    }}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))}
+                {' '}
+                <span style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontStyle: 'italic',
+                  fontWeight: 400,
+                  background: 'var(--accent-gradient)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}>
+                  {'Developer'.split('').map((char, i) => (
+                    <span
+                      key={`dev-${i}`}
+                      className="letter"
+                      style={{
+                        display: 'inline-block',
+                        opacity: 0,
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </h1>
+          </motion.div>
+        </div>
+
+        {/* Hero Split: Badge Left | Portrait Center | Bio Right */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr',
+          gap: '32px',
+          alignItems: 'center',
+          marginBottom: '48px',
+        }} className="hero-split-grid">
+          {/* Left: Availability Badge */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2, duration: 0.6 }}
+            style={{ display: 'flex', justifyContent: 'center' }}
+            className="hero-left-col"
+          >
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '10px',
+              padding: '12px 24px',
+              borderRadius: '9999px',
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-color)',
+              boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+            }}>
+              <span style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                background: '#22C55E',
+                animation: 'pulse-glow 2s infinite',
+                boxShadow: '0 0 8px rgba(34,197,94,0.5)',
+              }} />
+              <span style={{
+                fontSize: '14px',
+                fontWeight: 500,
+                color: 'var(--text-primary)',
+              }}>
+                Available for new opportunities
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Center: Portrait */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 1.8, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            {/* Glow behind portrait */}
+            <div style={{
+              position: 'absolute',
+              width: '300px',
+              height: '300px',
+              borderRadius: '50%',
+              background: 'radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.1) 50%, transparent 70%)',
+              filter: 'blur(40px)',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+            }} />
+            <img
+              src="/image/optimized/10.webp"
+              alt="Nanda Jefri Talantan"
+              style={{
+                width: '220px',
+                height: '280px',
+                objectFit: 'cover',
+                objectPosition: 'top',
+                borderRadius: '24px',
+                position: 'relative',
+                zIndex: 1,
+                boxShadow: '0 20px 60px rgba(59,130,246,0.15)',
+              }}
+            />
+          </motion.div>
+
+          {/* Right: Bio + CTA */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 2.1, duration: 0.6 }}
+            style={{ textAlign: 'center' }}
+            className="hero-right-col"
+          >
+            <p style={{
+              fontSize: '15px',
+              color: 'var(--text-secondary)',
+              lineHeight: 1.7,
+              marginBottom: '20px',
+              maxWidth: '340px',
+              margin: '0 auto 20px',
+            }}>
+              passionate about creating intuitive digital experiences that connect users with value.
+            </p>
+            <MagneticButton>
+              <button
+                onClick={scrollToContact}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  padding: '14px 28px',
+                  borderRadius: '9999px',
+                  background: 'var(--text-primary)',
+                  color: 'var(--bg-primary)',
+                  border: 'none',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  fontFamily: "'DM Sans', sans-serif",
+                  cursor: 'pointer',
+                  transition: 'all 0.3s',
+                }}
+              >
+                ✦ Get in Touch
+              </button>
+            </MagneticButton>
+          </motion.div>
+        </div>
 
         {/* Typewriter */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
+          transition={{ delay: 2.3 }}
           style={{
             fontFamily: "'JetBrains Mono', monospace",
-            fontSize: 'clamp(1rem, 3vw, 1.5rem)',
-            color: 'var(--accent-cyan)',
-            marginBottom: '20px',
-            minHeight: '2em',
+            fontSize: 'clamp(0.85rem, 2vw, 1.1rem)',
+            color: 'var(--accent-blue)',
+            marginBottom: '40px',
+            minHeight: '1.5em',
+            textAlign: 'center',
           }}
         >
           <span ref={typewriterRef}></span>
@@ -320,74 +479,28 @@ export function HeroSection() {
               display: 'inline-block',
               width: '2px',
               height: '1.2em',
-              background: 'var(--accent-cyan)',
+              background: 'var(--accent-blue)',
               marginLeft: '2px',
               verticalAlign: 'text-bottom',
             }}
           />
         </motion.div>
 
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.2, duration: 0.6 }}
-          style={{
-            fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-            color: 'var(--text-secondary)',
-            maxWidth: '560px',
-            margin: '0 auto 36px',
-            lineHeight: 1.7,
-          }}
-        >
-          Membangun solusi cerdas di persimpangan{' '}
-          <span style={{ color: 'var(--accent-purple)', fontWeight: 600 }}>AI</span>,{' '}
-          <span style={{ color: 'var(--accent-cyan)', fontWeight: 600 }}>Computer Vision</span>, dan{' '}
-          <span style={{ color: 'var(--accent-coral)', fontWeight: 600 }}>Web Development</span>.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.4, duration: 0.5 }}
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '16px',
-            marginBottom: '40px',
-            flexWrap: 'wrap',
-          }}
-        >
-          <MagneticButton>
-            <button className="glow-btn" onClick={scrollToProjects}>
-              🚀 Lihat Projek
-            </button>
-          </MagneticButton>
-          <MagneticButton>
-            <button className="outline-btn">
-              📄 Download CV
-            </button>
-          </MagneticButton>
-        </motion.div>
-
         {/* Social Links */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 2.6 }}
+          transition={{ delay: 2.5 }}
           style={{
             display: 'flex',
             justifyContent: 'center',
-            gap: '16px',
+            gap: '12px',
             marginBottom: '60px',
           }}
         >
           {[
-            { icon: <FaGithub size={20} />, url: 'https://github.com/jefri', label: 'GitHub' },
-            { icon: <FaLinkedin size={20} />, url: 'https://linkedin.com/in/jefri', label: 'LinkedIn' },
-            { icon: <Mail size={20} />, url: 'mailto:jefri@example.com', label: 'Email' },
+            { icon: <FaGithub size={18} />, url: 'https://github.com/JefriTalantan', label: 'GitHub' },
+            { icon: <FaLinkedin size={18} />, url: 'https://www.linkedin.com/in/nanda-jefri-talantan-35406829b', label: 'LinkedIn' },
           ].map(social => (
             <MagneticButton key={social.label} strength={0.4}>
               <a
@@ -396,11 +509,11 @@ export function HeroSection() {
                 rel="noopener noreferrer"
                 aria-label={social.label}
                 style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '14px',
+                  width: '44px',
+                  height: '44px',
+                  borderRadius: '12px',
                   border: '1px solid var(--border-color)',
-                  background: 'var(--bg-surface)',
+                  background: 'var(--bg-card)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -409,8 +522,8 @@ export function HeroSection() {
                   transition: 'all 0.3s',
                 }}
                 onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent-purple)';
-                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent-purple)';
+                  (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--accent-blue)';
+                  (e.currentTarget as HTMLAnchorElement).style.color = 'var(--accent-blue)';
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLAnchorElement).style.borderColor = 'var(--border-color)';
@@ -422,8 +535,35 @@ export function HeroSection() {
             </MagneticButton>
           ))}
         </motion.div>
+      </div>
 
-        {/* Scroll Indicator */}
+      {/* Tech Logos Marquee Carousel - Full width of viewport */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2.7, duration: 0.5 }}
+        className="tech-marquee-container"
+      >
+        <div className="tech-marquee-track">
+          {[...techLogos, ...techLogos].map((logo, index) => {
+            const TechIcon = logo.icon;
+            return (
+              <div
+                key={`${logo.name}-${index}`}
+                className="tech-logo-item"
+              >
+                <div className="icon-wrapper" style={{ color: logo.color }}>
+                  <TechIcon size={22} />
+                </div>
+                <span className="logo-name">{logo.name}</span>
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
+
+      {/* Scroll Indicator */}
+      <div style={{ position: 'relative', zIndex: 2, display: 'flex', justifyContent: 'center' }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -437,7 +577,10 @@ export function HeroSection() {
             fontSize: '12px',
             fontFamily: 'var(--font-caption)',
             letterSpacing: '0.1em',
+            marginTop: '48px',
+            cursor: 'pointer',
           }}
+          onClick={scrollToAbout}
         >
           <span>SCROLL</span>
           <motion.div
@@ -448,6 +591,134 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
+
+      <style>{`
+        @media (min-width: 768px) {
+          .hero-split-grid {
+            grid-template-columns: 1fr auto 1fr !important;
+          }
+          .hero-left-col {
+            justify-self: end !important;
+          }
+          .hero-right-col {
+            justify-self: start !important;
+            text-align: left !important;
+          }
+          .hero-right-col p {
+            margin: 0 0 20px 0 !important;
+          }
+        }
+
+        /* ----- Tech Marquee Styles ----- */
+        .tech-marquee-container {
+          width: 100%;
+          overflow: hidden;
+          position: relative;
+          padding: 20px 0;
+          border-top: 1px solid var(--border-color);
+          border-bottom: 1px solid var(--border-color);
+          margin-top: 32px;
+          display: flex;
+          align-items: center;
+          background: rgba(11, 17, 33, 0.2);
+          /* Fade gradient mask on edges */
+          mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+          );
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 10%,
+            black 90%,
+            transparent 100%
+          );
+        }
+
+        .light .tech-marquee-container {
+          background: rgba(241, 245, 249, 0.3);
+        }
+
+        .tech-marquee-track {
+          display: flex;
+          gap: 32px;
+          width: max-content;
+          animation: marqueeScroll 45s linear infinite;
+        }
+
+        /* Pause marquee scroll when container is hovered to let user select/hover individual logos */
+        .tech-marquee-container:hover .tech-marquee-track {
+          animation-play-state: paused;
+        }
+
+        @keyframes marqueeScroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        /* Individual Tech Logo Cards */
+        .tech-logo-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 8px 18px;
+          border-radius: 12px;
+          background: var(--bg-surface);
+          border: 1px solid var(--border-color);
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .tech-logo-item .icon-wrapper {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          filter: grayscale(1) brightness(0.8);
+          opacity: 0.5;
+          transition: all 0.4s ease;
+        }
+
+        .tech-logo-item .logo-name {
+          font-size: 13px;
+          font-weight: 600;
+          font-family: 'Syne', sans-serif;
+          color: var(--text-secondary);
+          transition: all 0.4s ease;
+        }
+
+        /* Hover Effects */
+        .tech-logo-item:hover {
+          border-color: var(--accent-blue);
+          box-shadow: 0 4px 20px rgba(59, 130, 246, 0.12);
+          transform: translateY(-2px);
+          background: var(--bg-card-hover);
+        }
+
+        .tech-logo-item:hover .icon-wrapper {
+          filter: grayscale(0) brightness(1);
+          opacity: 1;
+          transform: scale(1.15);
+        }
+
+        .tech-logo-item:hover .logo-name {
+          color: var(--text-primary);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .tech-marquee-track {
+            animation: none;
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+        }
+      `}</style>
     </section>
   );
 }
