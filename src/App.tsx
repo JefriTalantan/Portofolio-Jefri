@@ -59,61 +59,64 @@ function App() {
 
   return (
     <>
-      {/* Preloader */}
-      {loading && <Preloader onComplete={handlePreloaderComplete} />}
+      {loading ? (
+        <Preloader onComplete={handlePreloaderComplete} />
+      ) : (
+        <>
+          {/* Custom Cursor (desktop) */}
+          <CustomCursor />
 
-      {/* Custom Cursor (desktop) */}
-      <CustomCursor />
+          {/* Global Interactive Particle Background */}
+          <GlobalInteractiveBackground />
 
-      {/* Global Interactive Particle Background */}
-      <GlobalInteractiveBackground />
+          {/* Scroll Progress Bar */}
+          <ScrollProgress />
 
-      {/* Scroll Progress Bar */}
-      <ScrollProgress />
+          {/* Toast notifications */}
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: 'var(--bg-card)',
+                color: 'var(--text-primary)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '12px',
+                fontFamily: 'var(--font-body)',
+                fontSize: '14px',
+              },
+              success: {
+                iconTheme: {
+                  primary: '#3B82F6',
+                  secondary: '#fff',
+                },
+              },
+            }}
+          />
 
-      {/* Toast notifications */}
-      <Toaster
-        position="bottom-right"
-        toastOptions={{
-          style: {
-            background: 'var(--bg-card)',
-            color: 'var(--text-primary)',
-            border: '1px solid var(--border-color)',
-            borderRadius: '12px',
-            fontFamily: 'var(--font-body)',
-            fontSize: '14px',
-          },
-          success: {
-            iconTheme: {
-              primary: '#3B82F6',
-              secondary: '#fff',
-            },
-          },
-        }}
-      />
+          {/* Navbar */}
+          <Navbar
+            activeSection={activeSection}
+            isDark={isDark}
+            onThemeToggle={toggleTheme}
+          />
 
-      {/* Navbar */}
-      <Navbar
-        activeSection={activeSection}
-        isDark={isDark}
-        onThemeToggle={toggleTheme}
-      />
+          {/* Main Content */}
+          <main>
+            <HeroSection />
+            <AboutSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ExperienceSection />
+            <ContactSection />
+          </main>
 
-      {/* Main Content */}
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <ExperienceSection />
-        <ContactSection />
-      </main>
+          {/* Footer */}
+          <Footer />
 
-      {/* Footer */}
-      <Footer />
-
-      {/* Back to Top */}
-      <BackToTop />
+          {/* Back to Top */}
+          <BackToTop />
+        </>
+      )}
     </>
   );
 }

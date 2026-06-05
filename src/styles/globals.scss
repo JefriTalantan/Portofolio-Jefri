@@ -102,6 +102,8 @@ html {
   scroll-behavior: auto; /* Lenis handles smooth scroll */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -110,6 +112,8 @@ body {
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
+  width: 100%;
+  position: relative;
   transition: background-color var(--transition-base), color var(--transition-base);
 }
 

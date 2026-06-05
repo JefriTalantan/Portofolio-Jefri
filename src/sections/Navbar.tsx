@@ -41,6 +41,7 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="nav-container"
         style={{
           position: 'fixed',
           top: '16px',
@@ -224,6 +225,10 @@ export function Navbar({ activeSection, isDark, onThemeToggle }: NavbarProps) {
 
       <style>{`
         @media (max-width: 768px) {
+          .nav-container {
+            display: flex !important;
+            justify-content: space-between !important;
+          }
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: flex !important; }
         }

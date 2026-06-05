@@ -271,40 +271,83 @@ export function HeroSection() {
               }}
             >
               <span style={{ display: 'block', fontFamily: "'Syne', sans-serif" }}>
-                {'Hi I\'m Jefri'.split('').map((char, i) => (
-                  <span
-                    key={i}
-                    className="letter"
-                    style={{
-                      display: 'inline-block',
-                      opacity: 0,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                ))}
+                {/* Word: Hi */}
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                  {'Hi'.split('').map((char, i) => (
+                    <span
+                      key={`hi-${i}`}
+                      className="letter"
+                      style={{
+                        display: 'inline-block',
+                        opacity: 0,
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                  {'\u00A0'}
+                </span>
+                {/* Word: I'm */}
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                  {"I'm".split('').map((char, i) => (
+                    <span
+                      key={`im-${i}`}
+                      className="letter"
+                      style={{
+                        display: 'inline-block',
+                        opacity: 0,
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                  {'\u00A0'}
+                </span>
+                {/* Word: Jefri */}
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                  {'Jefri'.split('').map((char, i) => (
+                    <span
+                      key={`jef-${i}`}
+                      className="letter"
+                      style={{
+                        display: 'inline-block',
+                        opacity: 0,
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                </span>
               </span>
               <span style={{
                 display: 'block',
                 fontFamily: "'Syne', sans-serif",
                 marginTop: '4px',
               }}>
-                {'Full-Stack'.split('').map((char, i) => (
-                  <span
-                    key={`fs-${i}`}
-                    className="letter"
-                    style={{
-                      display: 'inline-block',
-                      opacity: 0,
-                      color: 'var(--text-primary)',
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </span>
-                ))}
-                {' '}
+                {/* Word: Full-Stack */}
+                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+                  {'Full-Stack'.split('').map((char, i) => (
+                    <span
+                      key={`fs-${i}`}
+                      className="letter"
+                      style={{
+                        display: 'inline-block',
+                        opacity: 0,
+                        color: 'var(--text-primary)',
+                      }}
+                    >
+                      {char}
+                    </span>
+                  ))}
+                  {'\u00A0'}
+                </span>
+                {/* Word: Developer */}
                 <span style={{
+                  display: 'inline-block',
+                  whiteSpace: 'nowrap',
                   fontFamily: "'Cormorant Garamond', serif",
                   fontStyle: 'italic',
                   fontWeight: 400,
@@ -583,14 +626,14 @@ export function HeroSection() {
           justify-content: center;
           position: relative;
           width: 100%;
-          max-width: 350px;
+          max-width: 280px;
           margin: 0 auto;
         }
 
         .hero-portrait-glow {
           position: absolute;
-          width: 280px;
-          height: 280px;
+          width: 240px;
+          height: 240px;
           border-radius: 50%;
           background: radial-gradient(circle, rgba(59,130,246,0.25) 0%, rgba(99,102,241,0.1) 50%, transparent 70%);
           filter: blur(30px);
@@ -603,8 +646,8 @@ export function HeroSection() {
         .hero-portrait-wrapper {
           position: relative;
           z-index: 1;
-          padding: 30px 40px 60px 40px;
-          margin: -30px -40px -60px -40px;
+          padding: 30px 0 60px 0;
+          margin: -30px 0 -60px 0;
           mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
           -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 85%);
           width: 100%;
@@ -613,8 +656,8 @@ export function HeroSection() {
         }
 
         .hero-portrait-img {
-          width: 240px;
-          height: 300px;
+          width: 220px;
+          height: 280px;
           object-fit: contain;
           object-position: bottom center;
           filter: drop-shadow(0 15px 30px rgba(59,130,246,0.22));
@@ -626,7 +669,7 @@ export function HeroSection() {
           bottom: -15px;
           left: 50%;
           transform: translateX(-50%);
-          width: 260px;
+          width: 240px;
           height: 80px;
           background: linear-gradient(to bottom, transparent, var(--bg-primary) 75%, var(--bg-primary));
           z-index: 2;
@@ -637,6 +680,7 @@ export function HeroSection() {
         @media (min-width: 768px) {
           .hero-portrait-container {
             max-width: none;
+            width: auto;
           }
           .hero-portrait-glow {
             width: 420px;
@@ -646,6 +690,7 @@ export function HeroSection() {
           .hero-portrait-wrapper {
             padding: 40px 60px 80px 60px;
             margin: -40px -60px -80px -60px;
+            width: auto;
           }
           .hero-portrait-img {
             width: 350px;
