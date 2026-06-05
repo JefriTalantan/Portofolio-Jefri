@@ -1,0 +1,56 @@
+[
+  {
+    "id": "univ",
+    "title": "S1 Teknologi Informasi",
+    "subtitle": "Universitas XYZ",
+    "description": "Fokus pada Machine Learning, Computer Vision, dan pengembangan aplikasi web. Aktif dalam riset dan kompetisi teknologi.",
+    "date": "2022 — Sekarang",
+    "icon": "🎓",
+    "type": "education"
+  },
+  {
+    "id": "lab-assistant",
+    "title": "Asisten Laboratorium",
+    "subtitle": "Lab Komputer — Universitas XYZ",
+    "description": "Membimbing praktikum pemrograman dasar dan struktur data. Mengembangkan sistem monitoring lab berbasis AI.",
+    "date": "2023 — Sekarang",
+    "icon": "💻",
+    "type": "work"
+  },
+  {
+    "id": "hackathon-winner",
+    "title": "Juara 2 Hackathon Nasional",
+    "subtitle": "AI Innovation Challenge 2024",
+    "description": "Mengembangkan solusi Computer Vision untuk monitoring keselamatan kerja di pabrik menggunakan YOLOv8.",
+    "date": "2024",
+    "icon": "🏆",
+    "type": "achievement"
+  },
+  {
+    "id": "kaggle-expert",
+    "title": "Kaggle Notebook Expert",
+    "subtitle": "Kaggle",
+    "description": "Mendapatkan tier Expert di Kaggle Notebooks dengan 10+ notebook yang di-upvote oleh komunitas global.",
+    "date": "2024",
+    "icon": "📊",
+    "type": "achievement"
+  },
+  {
+    "id": "smk",
+    "title": "SMK Jurusan RPL",
+    "subtitle": "SMKN 1 Kota XYZ",
+    "description": "Jurusan Rekayasa Perangkat Lunak. Lulus dengan nilai terbaik di jurusan dan aktif dalam ekstrakulikuler IT.",
+    "date": "2019 — 2022",
+    "icon": "📚",
+    "type": "education"
+  },
+  {
+    "id": "freelance",
+    "title": "Freelance Web Developer",
+    "subtitle": "Self-employed",
+    "description": "Mengerjakan proyek website untuk UMKM lokal dan instansi pendidikan. Fokus pada Laravel dan React.",
+    "date": "2023 — Sekarang",
+    "icon": "🚀",
+    "type": "work"
+  }
+]

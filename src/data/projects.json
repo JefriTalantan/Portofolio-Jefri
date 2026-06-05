@@ -1,0 +1,60 @@
+[
+  {
+    "id": "lab-monitoring",
+    "title": "Lab Monitoring System",
+    "description": "Sistem monitoring laboratorium real-time berbasis Computer Vision menggunakan YOLOv8 untuk deteksi objek dan FaceNet untuk pengenalan wajah. Dilengkapi dashboard analitik dan notifikasi otomatis via Telegram Bot.",
+    "longDescription": "Proyek unggulan yang mengintegrasikan multiple AI model untuk monitoring laboratorium kampus secara real-time. Menggunakan arsitektur microservice dengan Django backend, YOLOv8 untuk object detection, FaceNet untuk face recognition, dan WebSocket untuk live streaming data ke dashboard React.",
+    "image": "/images/projects/lab-monitoring.webp",
+    "tags": ["YOLOv8", "FaceNet", "Django", "React", "WebSocket", "PostgreSQL"],
+    "category": "ml",
+    "featured": true,
+    "githubUrl": "https://github.com/jefri/lab-monitoring",
+    "date": "2025"
+  },
+  {
+    "id": "ai-mentor-umkm",
+    "title": "AI Mentor UMKM",
+    "description": "Platform mentoring berbasis AI menggunakan Google Gemini API untuk memberikan konsultasi bisnis otomatis kepada pelaku UMKM. Fitur chat interaktif dengan konteks bisnis Indonesia.",
+    "image": "/images/projects/ai-mentor.webp",
+    "tags": ["Gemini AI", "React", "Node.js", "Tailwind CSS"],
+    "category": "web",
+    "featured": false,
+    "liveUrl": "https://ai-mentor-umkm.vercel.app",
+    "githubUrl": "https://github.com/jefri/ai-mentor-umkm",
+    "date": "2025"
+  },
+  {
+    "id": "sentiment-analysis-mbg",
+    "title": "Sentiment Analysis MBG",
+    "description": "Analisis sentimen media sosial menggunakan NLP dan machine learning untuk mengukur persepsi publik terhadap merek MBG. Model LSTM + BERT dengan akurasi 94%.",
+    "image": "/images/projects/sentiment-mbg.webp",
+    "tags": ["BERT", "LSTM", "Python", "Scikit-learn", "NLP"],
+    "category": "research",
+    "featured": false,
+    "githubUrl": "https://github.com/jefri/sentiment-analysis-mbg",
+    "date": "2024"
+  },
+  {
+    "id": "kaggle-ml-tutorial",
+    "title": "Kaggle ML Tutorial Series",
+    "description": "Seri notebook tutorial machine learning di Kaggle yang mencakup EDA, feature engineering, model selection, dan hyperparameter tuning. 500+ upvotes di Kaggle.",
+    "image": "/images/projects/kaggle-tutorial.webp",
+    "tags": ["Python", "Scikit-learn", "Pandas", "Kaggle", "Tutorial"],
+    "category": "ml",
+    "featured": false,
+    "liveUrl": "https://kaggle.com/jefri",
+    "githubUrl": "https://github.com/jefri/kaggle-notebooks",
+    "date": "2024"
+  },
+  {
+    "id": "smk-negeri-website",
+    "title": "SMK Negeri Website",
+    "description": "Website profil sekolah modern dengan CMS admin panel, portal berita, galeri, dan sistem informasi akademik. Full-stack Laravel dengan desain responsif.",
+    "image": "/images/projects/smk-website.webp",
+    "tags": ["Laravel", "MySQL", "Bootstrap", "JavaScript", "PHP"],
+    "category": "web",
+    "featured": false,
+    "liveUrl": "https://smkn-example.sch.id",
+    "date": "2023"
+  }
+]

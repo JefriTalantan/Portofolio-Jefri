@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* ===== Custom Theme (Tailwind CSS v4) ===== */
+@theme {
+  /* Dark Mode Colors (Default) */
+  --color-bg-primary: #0A0A0F;
+  --color-bg-surface: #111118;
+  --color-bg-card: #1A1A25;
+  --color-bg-card-hover: #222233;
+
+  --color-accent-purple: #6C5CE7;
+  --color-accent-cyan: #00D2FF;
+  --color-accent-coral: #FF6B6B;
+  --color-accent-yellow: #FFEAA7;
+
+  --color-text-primary: #E8E8F0;
+  --color-text-secondary: #8B8BA0;
+  --color-text-tertiary: #5A5A70;
+
+  --color-border: #2A2A3A;
+  --color-border-light: #1E1E2E;
+
+  /* Light Mode Overrides */
+  --color-light-bg-primary: #FAFAFA;
+  --color-light-bg-surface: #F0F0F5;
+  --color-light-bg-card: #FFFFFF;
+  --color-light-bg-card-hover: #F5F5FA;
+
+  --color-light-accent-cyan: #0099CC;
+  --color-light-accent-red: #FF4757;
+
+  --color-light-text-primary: #1A1A2E;
+  --color-light-text-secondary: #6B7280;
+  --color-light-text-tertiary: #9CA3AF;
+
+  --color-light-border: #E5E7EB;
+  --color-light-border-light: #F0F0F5;
+
+  /* Fonts */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-caption: 'DM Mono', monospace;
+  --font-code: 'JetBrains Mono', monospace;
+}

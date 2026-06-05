@@ -1,0 +1,32 @@
+[
+  { "name": "PyTorch", "icon": "pytorch", "category": "ml", "level": "advanced", "color": "#EE4C2C" },
+  { "name": "TensorFlow", "icon": "tensorflow", "category": "ml", "level": "advanced", "color": "#FF6F00" },
+  { "name": "YOLOv8", "icon": "yolo", "category": "ml", "level": "expert", "color": "#00D4FF" },
+  { "name": "Scikit-learn", "icon": "scikitlearn", "category": "ml", "level": "advanced", "color": "#F7931E" },
+  { "name": "HuggingFace", "icon": "huggingface", "category": "ml", "level": "intermediate", "color": "#FFD21E" },
+
+  { "name": "OpenCV", "icon": "opencv", "category": "cv", "level": "expert", "color": "#5C3EE8" },
+  { "name": "FaceNet", "icon": "facenet", "category": "cv", "level": "advanced", "color": "#00B4D8" },
+  { "name": "MediaPipe", "icon": "mediapipe", "category": "cv", "level": "intermediate", "color": "#0F9D58" },
+
+  { "name": "Django", "icon": "django", "category": "backend", "level": "advanced", "color": "#092E20" },
+  { "name": "Python", "icon": "python", "category": "backend", "level": "expert", "color": "#3776AB" },
+  { "name": "REST API", "icon": "api", "category": "backend", "level": "advanced", "color": "#6C5CE7" },
+  { "name": "WebSocket", "icon": "websocket", "category": "backend", "level": "intermediate", "color": "#00D2FF" },
+
+  { "name": "React", "icon": "react", "category": "frontend", "level": "advanced", "color": "#61DAFB" },
+  { "name": "TypeScript", "icon": "typescript", "category": "frontend", "level": "advanced", "color": "#3178C6" },
+  { "name": "Tailwind CSS", "icon": "tailwindcss", "category": "frontend", "level": "expert", "color": "#06B6D4" },
+  { "name": "JavaScript", "icon": "javascript", "category": "frontend", "level": "expert", "color": "#F7DF1E" },
+  { "name": "HTML/CSS", "icon": "html5", "category": "frontend", "level": "expert", "color": "#E34F26" },
+
+  { "name": "PostgreSQL", "icon": "postgresql", "category": "database", "level": "advanced", "color": "#4169E1" },
+  { "name": "SQLite", "icon": "sqlite", "category": "database", "level": "advanced", "color": "#003B57" },
+  { "name": "Redis", "icon": "redis", "category": "database", "level": "intermediate", "color": "#DC382D" },
+
+  { "name": "Git", "icon": "git", "category": "devops", "level": "expert", "color": "#F05032" },
+  { "name": "GitHub", "icon": "github", "category": "devops", "level": "expert", "color": "#6e5494" },
+  { "name": "Docker", "icon": "docker", "category": "devops", "level": "intermediate", "color": "#2496ED" },
+  { "name": "Google Colab", "icon": "googlecolab", "category": "devops", "level": "advanced", "color": "#F9AB00" },
+  { "name": "VS Code", "icon": "vscode", "category": "devops", "level": "expert", "color": "#007ACC" }
+]
